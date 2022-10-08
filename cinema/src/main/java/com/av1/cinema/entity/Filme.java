@@ -26,6 +26,16 @@ public class Filme {
 
 	@Column(name = "ano_lancamento")
 	private Instant anoLancamento;
+	@Column(name = "sinopse")
+	private String sinopse;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_diretor", referencedColumnName = "id_diretor")
+	private Diretor diretor;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
+	private Genero genero;
 
 //	Getters and Setters
 	public Integer getIdFilme() {
@@ -84,14 +94,4 @@ public class Filme {
 		this.genero = genero;
 	}
 
-	@Column(name = "sinopse")
-	private String sinopse;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_diretor", referencedColumnName = "id_diretor")
-	private Diretor diretor;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
-	private Genero genero;
 }

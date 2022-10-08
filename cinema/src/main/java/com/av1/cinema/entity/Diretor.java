@@ -21,8 +21,32 @@ public class Diretor {
 	
 	@Column(name = "nome")
 	private String nome;
-	
+
 	@OneToMany(mappedBy = "diretor")
-	@JoinColumn(name = "id_filme")
 	private Set<Filme> filmes;
+	
+//	Getters and Setters 
+	public Integer getIdDiretor() {
+		return idDiretor;
+	}
+
+	public void setIdDiretor(Integer idDiretor) {
+		this.idDiretor = idDiretor;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Set<Filme> getFilmes() {
+		return filmes;
+	}
+
+	public void setFilmes(Set<Filme> filmes) {
+		this.filmes = filmes;
+	}
 }

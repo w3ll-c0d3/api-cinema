@@ -22,4 +22,30 @@ public class Genero {
 	
 	@OneToMany(mappedBy = "genero")
 	private Set<Filme> filmes;
+	
+//	Getters and Setters
+	public Integer getIdGenero() {
+		return idGenero;
+	}
+
+	public void setIdGenero(Integer idGenero) {
+		this.idGenero = idGenero;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Set<Filme> getFilmes() {
+		return filmes;
+	}
+
+	public void setFilmes(Set<Filme> filmes) {
+		this.filmes = filmes;
+	}
+
 }
