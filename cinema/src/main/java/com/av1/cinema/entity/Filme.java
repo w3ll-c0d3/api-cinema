@@ -27,6 +27,63 @@ public class Filme {
 	@Column(name = "ano_lancamento")
 	private Instant anoLancamento;
 
+//	Getters and Setters
+	public Integer getIdFilme() {
+		return idFilme;
+	}
+
+	public void setIdFilme(Integer idFilme) {
+		this.idFilme = idFilme;
+	}
+
+	public String getNomeBr() {
+		return nomeBr;
+	}
+
+	public void setNomeBr(String nomeBr) {
+		this.nomeBr = nomeBr;
+	}
+
+	public String getNomeEn() {
+		return nomeEn;
+	}
+
+	public void setNomeEn(String nomeEn) {
+		this.nomeEn = nomeEn;
+	}
+
+	public Instant getAnoLancamento() {
+		return anoLancamento;
+	}
+
+	public void setAnoLancamento(Instant anoLancamento) {
+		this.anoLancamento = anoLancamento;
+	}
+
+	public String getSinopse() {
+		return sinopse;
+	}
+
+	public void setSinopse(String sinopse) {
+		this.sinopse = sinopse;
+	}
+
+	public Diretor getDiretor() {
+		return diretor;
+	}
+
+	public void setDiretor(Diretor diretor) {
+		this.diretor = diretor;
+	}
+
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+
 	@Column(name = "sinopse")
 	private String sinopse;
 	
