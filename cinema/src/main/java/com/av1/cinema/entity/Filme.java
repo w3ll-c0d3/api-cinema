@@ -1,6 +1,7 @@
 package com.av1.cinema.entity;
 
 import java.time.Instant;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "filme")
@@ -31,10 +34,12 @@ public class Filme {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_diretor", referencedColumnName = "id_diretor")
+	@JsonIgnore
 	private Diretor diretor;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
+	@JsonIgnore
 	private Genero genero;
 
 //	Getters and Setters
