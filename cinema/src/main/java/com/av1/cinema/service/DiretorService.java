@@ -12,6 +12,7 @@ public class DiretorService {
 	DiretorRepository diretorRepository;
 	
 	public List<Diretor> getAllDiretores() {
+		// return diretorRepository.findAll();
 		return diretorRepository.findAll();
 	}
 	

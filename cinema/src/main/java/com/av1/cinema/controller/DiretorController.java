@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.av1.cinema.entity.Diretor;
 import com.av1.cinema.service.DiretorService;
 
+import io.micrometer.core.ipc.http.HttpSender.Response;
+
 @RestController
 @RequestMapping("/diretores")
 public class DiretorController {
@@ -29,7 +31,7 @@ public class DiretorController {
 	DiretorService diretorService;
 	
 	@GetMapping("/search")
-	public ResponseEntity<List<Diretor>> getAllDiretors() {
+	public ResponseEntity<List<Diretor>> getAllDiretores() {
 		return new ResponseEntity<>(diretorService.getAllDiretores(), HttpStatus.OK);
 	}
 
@@ -50,12 +52,16 @@ public class DiretorController {
 	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Diretor> deleteDiretor(@PathVariable Integer id) {
-		return new ResponseEntity<>(diretorService.deleteDiretor(id), HttpStatus.OK);
+		Diretor diretor = diretorService.deleteDiretor(id);
+		if (diretor != null) {
+			return new ResponseEntity<>(diretor, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(diretor, HttpStatus.NOT_FOUND);
+		}
 	}
-	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Diretor> updateDiretor(@RequestBody Diretor diretor, @PathVariable Integer id) {
 		return new ResponseEntity<>(diretorService.updateDiretor(diretor, id), HttpStatus.OK);
 	}
-		
+	
 }

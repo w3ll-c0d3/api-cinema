@@ -33,6 +33,16 @@ public class FilmeController {
 		return new ResponseEntity<>(filmeService.getAllFilmes(), HttpStatus.OK);
 	}
 
+	// @GetMapping("/search")
+	// public ResponseEntity<List<Filme>> getAllFilmes() {
+	// 	Filme filme = filmeService.getAllFilmes();
+	// 	if(filme != null) {
+	// 		return new ResponseEntity<>(filme, HttpStatus.OK);
+	// 	} else {
+	// 		return new ResponseEntity<>(filme, HttpStatus.NOT_FOUND);
+	// 	} //return new ResponseEntity<>(filmeService.getAllFilmes(), HttpStatus.OK);
+	//  }
+
 	@GetMapping("/search/{id}")
 	public ResponseEntity<Filme> getFilmeById(@PathVariable Integer id) {
 		Filme filme = filmeService.getFilmeById(id);
@@ -41,7 +51,6 @@ public class FilmeController {
 		} else {
 			return new ResponseEntity<>(filme, HttpStatus.NOT_FOUND);
 		}
-		
 	}
 
 	@PostMapping("/save")

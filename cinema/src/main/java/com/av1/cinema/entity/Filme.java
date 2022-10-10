@@ -11,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "filme")
 public class Filme {
@@ -29,17 +27,18 @@ public class Filme {
 
 	@Column(name = "ano_lancamento")
 	private Instant anoLancamento;
+
 	@Column(name = "sinopse")
 	private String sinopse;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_diretor", referencedColumnName = "id_diretor")
-	@JsonIgnore
+	// @JsonIgnore
 	private Diretor diretor;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
-	@JsonIgnore
+	// @JsonIgnore
 	private Genero genero;
 
 //	Getters and Setters
