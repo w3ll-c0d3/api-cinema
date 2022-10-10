@@ -59,6 +59,7 @@ public class DiretorController {
 			return new ResponseEntity<>(diretor, HttpStatus.NOT_FOUND);
 		}
 	}
+	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Diretor> updateDiretor(@RequestBody Diretor diretor, @PathVariable Integer id) {
 		return new ResponseEntity<>(diretorService.updateDiretor(diretor, id), HttpStatus.OK);

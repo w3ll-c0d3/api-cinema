@@ -59,8 +59,13 @@ public class FilmeController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Filme> deleteFilme(@PathVariable Integer id) {
-		return new ResponseEntity<>(filmeService.deleteFilme(id), HttpStatus.OK);
+	public ResponseEntity<Filme> deleteGenero(@PathVariable Integer id) {
+		Filme filme = filmeService.deleteFilme(id);
+		if (filme != null) {
+			return new ResponseEntity<>(filme, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(filme, HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@PutMapping("/update/{id}")
