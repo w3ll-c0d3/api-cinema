@@ -70,7 +70,11 @@ public class FilmeController {
 	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Filme> updateFilme(@RequestBody Filme filme, @PathVariable Integer id) {
-		return new ResponseEntity<>(filmeService.updateFilme(filme, id), HttpStatus.OK);
+		Filme filme2 = filmeService.getFilmeById(id);
+		if(filme2 != null) {
+			return new ResponseEntity<>(filmeService.updateFilme(filme, id), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(filme2, HttpStatus.NOT_FOUND);
+		}
 	}
-	
 }

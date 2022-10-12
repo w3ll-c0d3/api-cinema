@@ -29,10 +29,25 @@ public class DiretorController {
 	@Autowired
 	DiretorService diretorService;
 	
-	@GetMapping("/search")
+	/*@GetMapping("/search")
 	public ResponseEntity<List<Diretor>> getAllDiretores() {
-		return new ResponseEntity<>(diretorService.getAllDiretores(), HttpStatus.OK);
-	}
+		
+		Diretor diretor = diretorService.getAllDiretores();
+		if(diretor != null) {
+			return new ResponseEntity<>(diretorService.getAllDiretores(), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(diretorService.getAllDiretores(), HttpStatus.NOT_FOUND);
+	}*/
+		
+	@GetMapping("/search")
+    public ResponseEntity<List<Diretor>> getAllDiretores() {
+        List<Diretor> lista = diretorService.getAllDiretores();
+        if(lista.size() == 0 ){
+            return new ResponseEntity<>(lista, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(lista, HttpStatus.OK);
+        }
+    }
 
 	@GetMapping("/search/{id}")
 	public ResponseEntity<Diretor> getDiretorById(@PathVariable Integer id) {
@@ -61,6 +76,11 @@ public class DiretorController {
 	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Diretor> updateDiretor(@RequestBody Diretor diretor, @PathVariable Integer id) {
-		return new ResponseEntity<>(diretorService.updateDiretor(diretor, id), HttpStatus.OK);
-	}
+		Diretor diretor2 = diretorService.getDiretorById(id);
+		if(diretor2 != null) {
+			return new ResponseEntity<>(diretorService.updateDiretor(diretor, id), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(diretor2, HttpStatus.NOT_FOUND);
+		}
+	}	
 }

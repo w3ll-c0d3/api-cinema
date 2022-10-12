@@ -60,6 +60,11 @@ public class GeneroController {
 	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Genero> updateGenero(@RequestBody Genero genero, @PathVariable Integer id) {
-		return new ResponseEntity<>(generoService.updateGenero(genero, id), HttpStatus.OK);
+		Genero genero2 = generoService.getGeneroById(id);
+		if(genero2 != null) {
+			return new ResponseEntity<>(generoService.updateGenero(genero, id), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(genero2, HttpStatus.NOT_FOUND);
+		}
 	}
 }
