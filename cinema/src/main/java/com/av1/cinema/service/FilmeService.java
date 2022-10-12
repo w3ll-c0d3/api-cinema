@@ -32,6 +32,7 @@ public class FilmeService {
 		filmeExistenteNoBanco.setGenero(filme.getGenero());
 		filmeExistenteNoBanco.setSinopse(filme.getSinopse());
 		filmeExistenteNoBanco.setDiretor(filme.getDiretor());
+		
 		return filmeRepository.save(filmeExistenteNoBanco);
 	}
 

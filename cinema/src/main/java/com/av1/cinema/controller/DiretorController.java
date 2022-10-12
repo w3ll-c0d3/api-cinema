@@ -63,5 +63,4 @@ public class DiretorController {
 	public ResponseEntity<Diretor> updateDiretor(@RequestBody Diretor diretor, @PathVariable Integer id) {
 		return new ResponseEntity<>(diretorService.updateDiretor(diretor, id), HttpStatus.OK);
 	}
-	
 }

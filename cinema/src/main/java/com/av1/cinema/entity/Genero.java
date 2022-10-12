@@ -56,5 +56,4 @@ public class Genero {
 	public void setFilmes(Set<Filme> filmes) {
 		this.filmes = filmes;
 	}
-
 }
