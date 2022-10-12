@@ -36,5 +36,4 @@ public class GeneroService {
 		generoRepository.deleteById(id);
 		return getGeneroById(id);
 	}
-
 }
