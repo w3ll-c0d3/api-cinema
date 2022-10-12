@@ -27,7 +27,6 @@ public class GeneroService {
 		Genero generoExistenteNoBanco = getGeneroById(id);
 		
 		generoExistenteNoBanco.setDescricao(genero.getDescricao());
-		generoExistenteNoBanco.setFilmes(genero.getFilmes());
 		
 		return generoRepository.save(generoExistenteNoBanco);
 	}
@@ -36,4 +35,5 @@ public class GeneroService {
 		generoRepository.deleteById(id);
 		return getGeneroById(id);
 	}
+
 }
