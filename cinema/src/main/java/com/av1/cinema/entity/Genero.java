@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "genero")
 public class Genero {
@@ -20,6 +22,7 @@ public class Genero {
 	@Column(name = "descricao")
 	private String descricao;
 	
+	@JsonManagedReference(value = "FilmeGenero")
 	@OneToMany(mappedBy = "genero")
 	private Set<Filme> filmes;
 	

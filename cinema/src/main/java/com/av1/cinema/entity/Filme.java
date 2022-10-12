@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "filme")
 public class Filme {
@@ -32,10 +34,12 @@ public class Filme {
 	private String sinopse;
 	
 	@ManyToOne
+	@JsonBackReference(value = "FilmeDiretor")
 	@JoinColumn(name = "id_diretor", referencedColumnName = "id_diretor")
 	// @JsonIgnore
 	private Diretor diretor;
 	
+	@JsonBackReference(value = "FilmeGenero")
 	@ManyToOne
 	@JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
 	// @JsonIgnore
