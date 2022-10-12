@@ -26,12 +26,12 @@ public class FilmeService {
 	public Filme updateFilme(Filme filme, Integer id) {
 		Filme filmeExistenteNoBanco = getFilmeById(id);
 		
-		filmeExistenteNoBanco.setNomeBr(filme.getNomeBr());
 		filmeExistenteNoBanco.setNomeEn(filme.getNomeEn());
+		filmeExistenteNoBanco.setNomeBr(filme.getNomeBr());
 		filmeExistenteNoBanco.setAnoLancamento(filme.getAnoLancamento());
+		filmeExistenteNoBanco.setGenero(filme.getGenero());
 		filmeExistenteNoBanco.setSinopse(filme.getSinopse());
 		filmeExistenteNoBanco.setDiretor(filme.getDiretor());
-		filmeExistenteNoBanco.setGenero(filme.getGenero());
 		
 		return filmeRepository.save(filmeExistenteNoBanco);
 	}
