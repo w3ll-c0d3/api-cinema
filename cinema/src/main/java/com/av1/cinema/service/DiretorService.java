@@ -29,6 +29,7 @@ public class DiretorService {
 		
 		diretorExistenteNoBanco.setFilmes(diretor.getFilmes());
 		diretorExistenteNoBanco.setNome(diretor.getNome());
+		//diretorExistenteNoBanco.setIdDiretor(diretor.getIdDiretor());
 		
 		return diretorRepository.save(diretorExistenteNoBanco);
 	}

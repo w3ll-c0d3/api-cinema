@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -29,7 +29,7 @@ public class Diretor {
 	@Column(name = "nome")
 	private String nome;
 
-	@JsonManagedReference(value = "FilmeDiretor")
+	//@JsonManagedReference(value = "FilmeDiretor")
 	@OneToMany(mappedBy = "diretor")
 	private Set<Filme> filmes;
 	

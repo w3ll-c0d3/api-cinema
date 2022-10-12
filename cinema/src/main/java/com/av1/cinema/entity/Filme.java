@@ -40,12 +40,12 @@ public class Filme {
 	private String sinopse;
 	
 	@ManyToOne
-	@JsonBackReference(value = "FilmeDiretor")
+	//@JsonBackReference(value = "FilmeDiretor")
 	@JoinColumn(name = "id_diretor", referencedColumnName = "id_diretor")
 	// @JsonIgnore
 	private Diretor diretor;
 	
-	@JsonBackReference(value = "FilmeGenero")
+	//@JsonBackReference(value = "FilmeGenero")
 	@ManyToOne
 	@JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
 	// @JsonIgnore
