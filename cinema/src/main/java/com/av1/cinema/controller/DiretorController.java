@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.av1.cinema.entity.Diretor;
+
 import com.av1.cinema.service.DiretorService; 
+
+import com.av1.cinema.service.DiretorService;
+
 
 @RestController
 @RequestMapping("/diretores")
