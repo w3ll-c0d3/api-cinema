@@ -32,7 +32,7 @@ public class FilmeController {
 //	D = Delete
 	
 	@Autowired
-	FilmeService filmeService;
+	FilmeService filmeService; 
 	@Autowired
     GeneroService generoService;
 	@Autowired

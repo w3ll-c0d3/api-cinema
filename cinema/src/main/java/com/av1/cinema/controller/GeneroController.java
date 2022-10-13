@@ -48,6 +48,11 @@ public class GeneroController {
 		return new ResponseEntity<>(generoService.saveGenero(genero), HttpStatus.CREATED);
 	}
 	
+	@PostMapping("/saveAll")
+    public ResponseEntity<List<Genero>> saveAllGenero(@RequestBody List<Genero> genero) {
+        return new ResponseEntity<>(generoService.saveAllGenero(genero), HttpStatus.CREATED);
+    }
+	 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Genero> deleteGenero(@PathVariable Integer id) {
 		Genero genero = generoService.deleteGenero(id);
