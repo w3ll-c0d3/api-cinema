@@ -28,16 +28,6 @@ public class DiretorController {
 	
 	@Autowired
 	DiretorService diretorService;
-	
-	/*@GetMapping("/search")
-	public ResponseEntity<List<Diretor>> getAllDiretores() {
-		
-		Diretor diretor = diretorService.getAllDiretores();
-		if(diretor != null) {
-			return new ResponseEntity<>(diretorService.getAllDiretores(), HttpStatus.OK);
-		}
-		return new ResponseEntity<>(diretorService.getAllDiretores(), HttpStatus.NOT_FOUND);
-	}*/
 		
 	@GetMapping("/search")
     public ResponseEntity<List<Diretor>> getAllDiretores() {

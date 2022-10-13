@@ -40,15 +40,11 @@ public class Filme {
 	private String sinopse;
 	
 	@ManyToOne
-	//@JsonBackReference(value = "FilmeDiretor")
 	@JoinColumn(name = "id_diretor", referencedColumnName = "id_diretor")
-	// @JsonIgnore
 	private Diretor diretor;
 	
-	//@JsonBackReference(value = "FilmeGenero")
 	@ManyToOne
 	@JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
-	// @JsonIgnore
 	private Genero genero;
 
 //	Getters and Setters
@@ -107,5 +103,4 @@ public class Filme {
 	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
-
 }

@@ -29,7 +29,6 @@ public class Diretor {
 	@Column(name = "nome")
 	private String nome;
 
-	//@JsonManagedReference(value = "FilmeDiretor")
 	@OneToMany(mappedBy = "diretor")
 	private Set<Filme> filmes;
 	

@@ -53,33 +53,4 @@ public class FilmeService {
 		filmeRepository.deleteById(id);
 		return getFilmeById(id);
 	}
-	
-//	private Filme converteDTOparaEntidade(FilmeDTO fDTO) {
-//		Filme filme = new Filme();
-//		filme.setNomeBr(fDTO.getNomeBr());
-//		filme.setNomeEn(fDTO.getNomeEn());
-//		filme.setAnoLancamento(fDTO.getAnoLancamento());
-//		filme.setSinopse(fDTO.getSinopse());
-//		
-//			Optional<Diretor> diretor = diretorRepository.findById(fDTO.getIdDiretor());
-//			Optional<Genero> genero = generoRepository.findById(fDTO.getIdGenero());
-//			
-//			if(diretor.isPresent()) {
-//				filme.setDiretor(diretor.get());
-//			}else {
-//				throw new NotFoundException("Diretor não encontrado");
-//			}
-//			
-//			if(genero.isPresent()) {
-//				filme.setGenero(genero.get());
-//			}else {
-//				throw new NotFoundException("Gênero não encontardo");
-//			}
-//			
-//			return filme;
-//			
-//		
-//		
-//	}
-	
 }
