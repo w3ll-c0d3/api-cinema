@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.webjars.NotFoundException;
 
-import com.av1.cinema.DTO.FilmeDTO;
+
 import com.av1.cinema.entity.Diretor;
 import com.av1.cinema.entity.Filme;
 import com.av1.cinema.entity.Genero;
@@ -33,8 +33,10 @@ public class FilmeController {
 	
 	@Autowired
 	FilmeService filmeService;
+	@Autowired
+    GeneroService generoService;
+	@Autowired
 	DiretorService diretorService;
-	GeneroService generoService;
 	
 	@GetMapping("/search")
 	public ResponseEntity<List<Filme>> getAllFilmes() {
@@ -61,25 +63,32 @@ public class FilmeController {
 		}
 	}
 
-	@PostMapping("/save")
-	public ResponseEntity<Filme> saveFilme(@RequestBody FilmeDTO filmeDTO) {
-		
-//		Diretor diretor = diretorService.getDiretorById(id);
-//		Genero genero = generoService.getGeneroById(id);
-		
-		
-		try{
-			return new ResponseEntity<>(filmeService.saveFilme(filmeDTO), HttpStatus.CREATED);
-		}catch(NotFoundException e) {
-			return ResponseEntity.notFound().build();
-		}
-	
-//		if(genero != null || diretor != null) {
-			
-			
-//		return new ResponseEntity<>(filme , HttpStatus.NOT_FOUND);
-		
-	}
+    @PostMapping("/save")
+    public ResponseEntity<Filme> saveFilme(@RequestBody Filme filme) {
+        List<Diretor> diretor = diretorService.getAllDiretores();
+        List<Genero> genero = generoService.getAllGeneros();
+
+        Boolean diretorFlag = false;
+        Boolean generoFlag = false;
+
+        for(int i = 0; i <= diretor.size() - 1; i++) {
+            if(diretor.get(i).getIdDiretor() == filme.getDiretor().getIdDiretor()) {
+                diretorFlag = true;
+            }
+        }
+
+        for(int j = 0; j <= genero.size() - 1; j++) {
+            if(genero.get(j).getIdGenero() == filme.getGenero().getIdGenero()) {
+                generoFlag = true;
+            }
+        }
+
+        if(diretorFlag == true && generoFlag == true) {
+            return new ResponseEntity<>(filmeService.saveFilme(filme), HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Filme> deleteGenero(@PathVariable Integer id) {

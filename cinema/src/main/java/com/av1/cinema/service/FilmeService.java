@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
-import com.av1.cinema.DTO.FilmeDTO;
+
 import com.av1.cinema.entity.Diretor;
 import com.av1.cinema.entity.Filme;
 import com.av1.cinema.entity.Genero;
@@ -32,10 +32,9 @@ public class FilmeService {
 		return filmeRepository.findById(id).orElse(null);
 	}
 	
-	public Filme saveFilme(FilmeDTO filmeDTO) {
-		
-		return filmeRepository.save(converteDTOparaEntidade(filmeDTO));
-	}
+	public Filme saveFilme(Filme filme) {
+        return filmeRepository.save(filme);
+    }
 	
 	public Filme updateFilme(Filme filme, Integer id) {
 		Filme filmeExistenteNoBanco = getFilmeById(id);
@@ -55,32 +54,32 @@ public class FilmeService {
 		return getFilmeById(id);
 	}
 	
-	private Filme converteDTOparaEntidade(FilmeDTO fDTO) {
-		Filme filme = new Filme();
-		filme.setNomeBr(fDTO.getNomeBr());
-		filme.setNomeEn(fDTO.getNomeEn());
-		filme.setAnoLancamento(fDTO.getAnoLancamento());
-		filme.setSinopse(fDTO.getSinopse());
-		
-			Optional<Diretor> diretor = diretorRepository.findById(fDTO.getIdDiretor());
-			Optional<Genero> genero = generoRepository.findById(fDTO.getIdGenero());
-			
-			if(diretor.isPresent()) {
-				filme.setDiretor(diretor.get());
-			}else {
-				throw new NotFoundException("Diretor não encontrado");
-			}
-			
-			if(genero.isPresent()) {
-				filme.setGenero(genero.get());
-			}else {
-				throw new NotFoundException("Gênero não encontardo");
-			}
-			
-			return filme;
-			
-		
-		
-	}
+//	private Filme converteDTOparaEntidade(FilmeDTO fDTO) {
+//		Filme filme = new Filme();
+//		filme.setNomeBr(fDTO.getNomeBr());
+//		filme.setNomeEn(fDTO.getNomeEn());
+//		filme.setAnoLancamento(fDTO.getAnoLancamento());
+//		filme.setSinopse(fDTO.getSinopse());
+//		
+//			Optional<Diretor> diretor = diretorRepository.findById(fDTO.getIdDiretor());
+//			Optional<Genero> genero = generoRepository.findById(fDTO.getIdGenero());
+//			
+//			if(diretor.isPresent()) {
+//				filme.setDiretor(diretor.get());
+//			}else {
+//				throw new NotFoundException("Diretor não encontrado");
+//			}
+//			
+//			if(genero.isPresent()) {
+//				filme.setGenero(genero.get());
+//			}else {
+//				throw new NotFoundException("Gênero não encontardo");
+//			}
+//			
+//			return filme;
+//			
+//		
+//		
+//	}
 	
 }

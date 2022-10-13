@@ -64,6 +64,11 @@ public class DiretorController {
 		return new ResponseEntity<>(diretorService.saveDiretor(diretor), HttpStatus.CREATED);
 	}
 	
+	@PostMapping("/saveAll")
+    public ResponseEntity<List<Diretor>> saveAllDiretor(@RequestBody List<Diretor> diretor) {
+        return new ResponseEntity<>(diretorService.saveAllDiretor(diretor), HttpStatus.CREATED);
+    }
+	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Diretor> deleteDiretor(@PathVariable Integer id) {
 		Diretor diretor = diretorService.deleteDiretor(id);
