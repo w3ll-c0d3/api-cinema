@@ -23,6 +23,10 @@ public class GeneroService {
 		return generoRepository.save(genero);
 	}
 	
+	public List<Genero> saveAllGenero(List<Genero> genero) {
+        return generoRepository.saveAll(genero);
+    }
+	
 	public Genero updateGenero(Genero genero, Integer id) {
 		Genero generoExistenteNoBanco = getGeneroById(id);
 		
