@@ -24,6 +24,10 @@ public class DiretorService {
 		return diretorRepository.save(diretor);
 	}
 	
+	public List<Diretor> saveAllDiretor(List<Diretor> diretor) {
+        return diretorRepository.saveAll(diretor);
+    }
+	
 	public Diretor updateDiretor(Diretor diretor, Integer id) {
 		Diretor diretorExistenteNoBanco = getDiretorById(id);
 		
