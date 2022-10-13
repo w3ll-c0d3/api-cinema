@@ -28,7 +28,6 @@ public class Genero {
 	@Column(name = "descricao")
 	private String descricao;
 	
-	//@JsonManagedReference(value = "FilmeGenero")
 	@OneToMany(mappedBy = "genero")
 	private Set<Filme> filmes;
 	

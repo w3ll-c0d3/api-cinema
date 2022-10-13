@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.av1.cinema.entity.Diretor;
 import com.av1.cinema.entity.Filme;
+import com.av1.cinema.entity.Genero;
+import com.av1.cinema.service.DiretorService;
 import com.av1.cinema.service.FilmeService;
+import com.av1.cinema.service.GeneroService;
 
 @RestController
 @RequestMapping("/filmes")
@@ -30,18 +34,17 @@ public class FilmeController {
 	
 	@GetMapping("/search")
 	public ResponseEntity<List<Filme>> getAllFilmes() {
-		return new ResponseEntity<>(filmeService.getAllFilmes(), HttpStatus.OK);
+		try {
+			List<Filme> filmes = filmeService.getAllFilmes();
+			System.out.println(filmes.size());
+			if(filmes.size() > 0) {
+				return new ResponseEntity<>(filmes, HttpStatus.OK);
+			}
+		} catch(Exception e){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-
-	// @GetMapping("/search")
-	// public ResponseEntity<List<Filme>> getAllFilmes() {
-	// 	Filme filme = filmeService.getAllFilmes();
-	// 	if(filme != null) {
-	// 		return new ResponseEntity<>(filme, HttpStatus.OK);
-	// 	} else {
-	// 		return new ResponseEntity<>(filme, HttpStatus.NOT_FOUND);
-	// 	} //return new ResponseEntity<>(filmeService.getAllFilmes(), HttpStatus.OK);
-	//  }
 
 	@GetMapping("/search/{id}")
 	public ResponseEntity<Filme> getFilmeById(@PathVariable Integer id) {
@@ -52,10 +55,38 @@ public class FilmeController {
 			return new ResponseEntity<>(filme, HttpStatus.NOT_FOUND);
 		}
 	}
-
+	
+	@Autowired
+	DiretorService diretorService;
+	
+	@Autowired
+	GeneroService generoService;
+	
 	@PostMapping("/save")
 	public ResponseEntity<Filme> saveFilme(@RequestBody Filme filme) {
-		return new ResponseEntity<>(filmeService.saveFilme(filme), HttpStatus.CREATED);
+		List<Diretor> diretor = diretorService.getAllDiretores();
+		List<Genero> genero = generoService.getAllGeneros();
+		
+		Boolean diretorFlag = false;
+		Boolean generoFlag = false;
+		
+		for(int i = 0; i <= diretor.size() - 1; i++) {
+			if(diretor.get(i).getIdDiretor() == filme.getDiretor().getIdDiretor()) {
+				diretorFlag = true;
+			}	
+		}
+		
+		for(int j = 0; j <= genero.size() - 1; j++) {
+			if(genero.get(j).getIdGenero() == filme.getGenero().getIdGenero()) {
+				generoFlag = true;
+			}
+		}
+		
+		if(diretorFlag == true && generoFlag == true) {
+			return new ResponseEntity<>(filmeService.saveFilme(filme), HttpStatus.CREATED);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@DeleteMapping("/delete/{id}")
