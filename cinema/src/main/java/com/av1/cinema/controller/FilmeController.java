@@ -39,19 +39,17 @@ public class FilmeController {
 	DiretorService diretorService;
 	
 	@GetMapping("/search")
-	public ResponseEntity<List<Filme>> getAllFilmes() {
-		return new ResponseEntity<>(filmeService.getAllFilmes(), HttpStatus.OK);
-	}
-
-	// @GetMapping("/search")
-	// public ResponseEntity<List<Filme>> getAllFilmes() {
-	// 	Filme filme = filmeService.getAllFilmes();
-	// 	if(filme != null) {
-	// 		return new ResponseEntity<>(filme, HttpStatus.OK);
-	// 	} else {
-	// 		return new ResponseEntity<>(filme, HttpStatus.NOT_FOUND);
-	// 	} //return new ResponseEntity<>(filmeService.getAllFilmes(), HttpStatus.OK);
-	//  }
+    public ResponseEntity<List<Filme>> getAllFilmes() {
+        try {
+            List<Filme> filmes = filmeService.getAllFilmes();
+            if(filmes.size() > 0) {
+                return new ResponseEntity<>(filmes, HttpStatus.OK);
+            }
+        } catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
 	@GetMapping("/search/{id}")
 	public ResponseEntity<Filme> getFilmeById(@PathVariable Integer id) {
