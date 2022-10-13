@@ -13,9 +13,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.webjars.NotFoundException;
 
+import com.av1.cinema.DTO.FilmeDTO;
+import com.av1.cinema.entity.Diretor;
 import com.av1.cinema.entity.Filme;
+import com.av1.cinema.entity.Genero;
+import com.av1.cinema.service.DiretorService;
 import com.av1.cinema.service.FilmeService;
+import com.av1.cinema.service.GeneroService;
 
 @RestController
 @RequestMapping("/filmes")
@@ -27,6 +33,8 @@ public class FilmeController {
 	
 	@Autowired
 	FilmeService filmeService;
+	DiretorService diretorService;
+	GeneroService generoService;
 	
 	@GetMapping("/search")
 	public ResponseEntity<List<Filme>> getAllFilmes() {
@@ -54,8 +62,23 @@ public class FilmeController {
 	}
 
 	@PostMapping("/save")
-	public ResponseEntity<Filme> saveFilme(@RequestBody Filme filme) {
-		return new ResponseEntity<>(filmeService.saveFilme(filme), HttpStatus.CREATED);
+	public ResponseEntity<Filme> saveFilme(@RequestBody FilmeDTO filmeDTO) {
+		
+//		Diretor diretor = diretorService.getDiretorById(id);
+//		Genero genero = generoService.getGeneroById(id);
+		
+		
+		try{
+			return new ResponseEntity<>(filmeService.saveFilme(filmeDTO), HttpStatus.CREATED);
+		}catch(NotFoundException e) {
+			return ResponseEntity.notFound().build();
+		}
+	
+//		if(genero != null || diretor != null) {
+			
+			
+//		return new ResponseEntity<>(filme , HttpStatus.NOT_FOUND);
+		
 	}
 	
 	@DeleteMapping("/delete/{id}")
